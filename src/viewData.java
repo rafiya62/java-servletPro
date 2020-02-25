@@ -51,7 +51,7 @@ public class viewData extends HttpServlet
 			PrintWriter out=response.getWriter();
 			s=con.createStatement();
 			rs=s.executeQuery("select * from registration");	
-			out.print("<table border=2 align=center>");
+			out.print("<table border=2 align=right>");
 			out.print("<tr>");
 			out.print("<th>Name</th>");
 			out.print("<th>Password'</th>");

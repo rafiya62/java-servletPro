@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +23,7 @@ public class DoLogin extends HttpServlet
 	Statement s;
 	ResultSet rs;
 	Connection con;
+	
 	private static final long serialVersionUID = 1L;
     public DoLogin()
     {
@@ -59,11 +61,16 @@ public class DoLogin extends HttpServlet
 				String name2=rs.getString(1);
 				String pass2=rs.getString(2);
 				
+				//session to set user
 				HttpSession session=request.getSession();
 				session.setAttribute("un1",name1);
 				out.print("Welcome"+name1);
 				RequestDispatcher rd=request.getRequestDispatcher("home.html");
 				rd.include(request, response);
+				
+				//set ServletContext to send value of which entered by user on user name field...
+		    	ServletContext context1=getServletContext();
+		    	context1.setAttribute("un1",name1);
 			}
 			else
 			{
